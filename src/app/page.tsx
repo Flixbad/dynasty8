@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { FeaturedProperties } from "@/components/home/FeaturedProperties";
 import { CategoryShowcase } from "@/components/home/CategoryShowcase";
+import { ZonesTeaser } from "@/components/home/ZonesTeaser";
 import { AgencyCTA } from "@/components/home/AgencyCTA";
 import { getFeaturedProperties } from "@/data/properties";
 
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <div className="gold-line" />
       <FeaturedProperties properties={featured} />
+      <ZonesTeaser />
       <CategoryShowcase />
       <AgencyCTA />
     </>

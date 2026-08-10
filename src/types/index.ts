@@ -10,6 +10,8 @@ export type PropertyCategory =
 
 export type PropertyStatus = "disponible" | "reserve" | "vendu";
 
+export type ZoneId = 1 | 2 | 3 | 4;
+
 export interface Property {
   id: string;
   slug: string;
@@ -22,6 +24,8 @@ export interface Property {
   status: PropertyStatus;
   location: string;
   district: string;
+  /** Zone Dynasty8 (1–4) selon la carte San Andreas */
+  zone: ZoneId;
   bedrooms?: number;
   bathrooms?: number;
   area: number;
@@ -31,6 +35,18 @@ export interface Property {
   gallery: string[];
   featured?: boolean;
   yearBuilt?: number;
+}
+
+export interface ZoneMeta {
+  id: ZoneId;
+  slug: string;
+  label: string;
+  color: string;
+  colorSoft: string;
+  tagline: string;
+  description: string;
+  districts: string[];
+  highlights: string[];
 }
 
 export interface Agent {

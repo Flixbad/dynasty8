@@ -14,6 +14,7 @@ interface BiensPageProps {
   searchParams: Promise<{
     category?: string;
     district?: string;
+    zone?: string;
     status?: string;
     q?: string;
   }>;
@@ -21,9 +22,14 @@ interface BiensPageProps {
 
 export default async function BiensPage({ searchParams }: BiensPageProps) {
   const params = await searchParams;
+  const zoneParam = params.zone ? Number(params.zone) : undefined;
   const results = filterProperties({
     category: (params.category as PropertyCategory | "all") || "all",
     district: params.district,
+    zone:
+      zoneParam === 1 || zoneParam === 2 || zoneParam === 3 || zoneParam === 4
+        ? zoneParam
+        : "all",
     status: (params.status as PropertyStatus | "all") || "all",
     q: params.q,
   });

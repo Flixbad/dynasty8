@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { getPropertyBySlug, properties } from "@/data/properties";
+import { getZone } from "@/data/zones";
 import {
   formatArea,
   formatPrice,
@@ -32,6 +33,7 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
   const { slug } = await params;
   const property = getPropertyBySlug(slug);
   if (!property) notFound();
+  const zone = getZone(property.zone);
 
   return (
     <div className="pb-24 pt-28">
@@ -45,6 +47,15 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/20" />
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-10 md:px-8">
           <div className="flex flex-wrap gap-2">
+            {zone && (
+              <Link
+                href={`/zones/${zone.slug}`}
+                className="px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-ink"
+                style={{ background: zone.color }}
+              >
+                {zone.label}
+              </Link>
+            )}
             <span className="bg-ink/60 px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-gold-soft backdrop-blur-sm">
               {getCategoryLabel(property.category)}
             </span>
@@ -59,6 +70,7 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
           </h1>
           <p className="mt-3 text-cream-muted">
             {property.location} · {property.district}
+            {zone ? ` · ${zone.label}` : ""}
           </p>
         </div>
       </div>

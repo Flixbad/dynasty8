@@ -24,6 +24,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/zones" className="hover:text-cream">
+                Zones 1–4
+              </Link>
+            </li>
+            <li>
               <Link href="/categories" className="hover:text-cream">
                 Catégories
               </Link>

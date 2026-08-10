@@ -1,4 +1,5 @@
-import type { Property, PropertyCategory, PropertyStatus } from "@/types";
+import type { Property, PropertyCategory, PropertyStatus, ZoneId } from "@/types";
+import { resolveZoneId } from "@/data/zones";
 
 export const properties: Property[] = [
   {
@@ -15,6 +16,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "12 Eclipse Boulevard",
     district: "Rockford Hills",
+    zone: 2,
     bedrooms: 5,
     bathrooms: 4,
     area: 420,
@@ -44,6 +46,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Maze Bank Tower, étage 68",
     district: "Downtown Los Santos",
+    zone: 2,
     bedrooms: 3,
     bathrooms: 3,
     area: 280,
@@ -73,6 +76,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "34 Mirror Park Boulevard",
     district: "Mirror Park",
+    zone: 1,
     bedrooms: 4,
     bathrooms: 2,
     area: 165,
@@ -101,6 +105,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "88 Prosperity Street",
     district: "Del Perro",
+    zone: 2,
     bedrooms: 2,
     bathrooms: 1,
     area: 95,
@@ -129,6 +134,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "210 Popular Street",
     district: "La Mesa",
+    zone: 1,
     area: 1200,
     parking: 8,
     features: ["Quais de chargement", "Bureaux annexes", "Accès autoroute", "Hauteur sous plafond 8m"],
@@ -155,6 +161,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "45 Strawberry Avenue",
     district: "Strawberry",
+    zone: 1,
     area: 350,
     parking: 10,
     features: ["10 places", "Fosse atelier", "Climatisation", "Sécurité renforcée", "Lounge"],
@@ -181,6 +188,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "17 Power Street",
     district: "Pillbox Hill",
+    zone: 2,
     area: 220,
     parking: 4,
     features: ["Open space", "Salle de réunion", "Fibre", "Vue Downtown"],
@@ -207,6 +215,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Route 1 Nord, Paleto",
     district: "Paleto Bay",
+    zone: 4,
     area: 2500,
     features: ["Constructible", "Vue collines", "Viabilisation partielle", "Titre clair"],
     image:
@@ -230,6 +239,7 @@ export const properties: Property[] = [
     status: "reserve",
     location: "1 North Rockford Drive",
     district: "Vinewood Hills",
+    zone: 3,
     bedrooms: 6,
     bathrooms: 7,
     area: 680,
@@ -258,6 +268,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "22 Vespucci Boulevard",
     district: "Vespucci Canals",
+    zone: 2,
     bedrooms: 2,
     bathrooms: 2,
     area: 140,
@@ -285,6 +296,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Banham Canyon Drive",
     district: "Banham Canyon",
+    zone: 3,
     bedrooms: 3,
     bathrooms: 3,
     area: 210,
@@ -312,6 +324,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Sandy Shores Airfield",
     district: "Sandy Shores",
+    zone: 1,
     area: 800,
     parking: 4,
     features: ["Grande hauteur", "Aérodrome", "Atelier", "Bureau"],
@@ -337,6 +350,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Dock 4, Elysian Island",
     district: "Elysian Island",
+    zone: 1,
     area: 2000,
     parking: 12,
     features: ["Accès quai", "Zone sécurisée", "Port", "Grande capacité"],
@@ -362,6 +376,7 @@ export const properties: Property[] = [
     status: "vendu",
     location: "Eclipse Towers, PH-A",
     district: "West Vinewood",
+    zone: 2,
     bedrooms: 3,
     bathrooms: 3,
     area: 240,
@@ -389,6 +404,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Portola Drive",
     district: "Rockford Hills",
+    zone: 2,
     area: 90,
     parking: 2,
     features: ["Vitrine", "Quartier premium", "Clé en main"],
@@ -414,6 +430,7 @@ export const properties: Property[] = [
     status: "disponible",
     location: "Senora Freeway, mile 42",
     district: "Grand Senora Desert",
+    zone: 1,
     area: 50000,
     features: ["5 hectares", "Isolé", "Bornage", "Potentiel ranch"],
     image:
@@ -423,11 +440,125 @@ export const properties: Property[] = [
     ],
     featured: false,
   },
+  {
+    id: "p17",
+    slug: "villa-pacific-bluffs",
+    title: "Villa falaise — Pacific Bluffs",
+    description:
+      "Villa contemporaine suspendue au-dessus de l'océan, glass house et infinity pool.",
+    longDescription:
+      "Sur les falaises de Pacific Bluffs, cette villa de 390 m² offre une infinity pool face au Pacifique, un salon panoramique et trois suites. Accès privé, garage double et intimité absolue — le summum de la Zone 3.",
+    category: "villa",
+    price: 4750000,
+    currency: "USD",
+    status: "disponible",
+    location: "Pacific Bluffs Drive",
+    district: "Pacific Bluffs",
+    zone: 3,
+    bedrooms: 4,
+    bathrooms: 4,
+    area: 390,
+    parking: 2,
+    features: ["Infinity pool", "Vue océan", "Glass house", "Accès privé"],
+    image:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80",
+    ],
+    featured: true,
+    yearBuilt: 2022,
+  },
+  {
+    id: "p18",
+    slug: "maison-richman",
+    title: "Résidence Richman Gates",
+    description:
+      "Maison bourgeoise derrière les grilles de Richman, jardin et tennis.",
+    longDescription:
+      "Dans l'enclave sécurisée de Richman, résidence de 310 m² avec court de tennis, jardin à la française et suite parentale. Quartier le plus exclusif de la Zone 3, voisinages VIP et calme absolu.",
+    category: "maison",
+    price: 2200000,
+    currency: "USD",
+    status: "disponible",
+    location: "Richman Street",
+    district: "Richman",
+    zone: 3,
+    bedrooms: 5,
+    bathrooms: 4,
+    area: 310,
+    parking: 3,
+    features: ["Tennis", "Jardin", "Quartier sécurisé", "Suite parentale"],
+    image:
+      "https://images.unsplash.com/photo-1605276374104-dee2c83fff90?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1605276374104-dee2c83fff90?auto=format&fit=crop&w=1400&q=80",
+    ],
+    featured: false,
+    yearBuilt: 2009,
+  },
+  {
+    id: "p19",
+    slug: "cabane-mount-chiliad",
+    title: "Cabane Mount Chiliad",
+    description:
+      "Refuge en bois au pied du Chiliad, vue vallée et sentiers de randonnée.",
+    longDescription:
+      "Cabane de 85 m² au pied de Mount Chiliad : poêle à bois, mezzanine, terrasse et accès sentiers. Parfaite base RP hors ville, Zone 4 nature et silence.",
+    category: "maison",
+    price: 165000,
+    currency: "USD",
+    status: "disponible",
+    location: "Chiliad Mountain Trail",
+    district: "Mount Chiliad",
+    zone: 4,
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 85,
+    parking: 1,
+    features: ["Poêle à bois", "Vue vallée", "Sentiers", "Hors réseau urbain"],
+    image:
+      "https://images.unsplash.com/photo-1449158743715-0a90ebb4d4b8?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1449158743715-0a90ebb4d4b8?auto=format&fit=crop&w=1400&q=80",
+    ],
+    featured: true,
+    yearBuilt: 1998,
+  },
+  {
+    id: "p20",
+    slug: "maison-chumash",
+    title: "Maison balnéaire — North Chumash",
+    description:
+      "Maison bois et verre face à l'océan nord, plage privée et deck.",
+    longDescription:
+      "Sur la côte North Chumash, maison de 140 m² avec deck océan, cheminée et accès plage. Ambiance calme de Zone 4, loin du bruit de Downtown.",
+    category: "maison",
+    price: 695000,
+    currency: "USD",
+    status: "disponible",
+    location: "Great Ocean Highway",
+    district: "North Chumash",
+    zone: 4,
+    bedrooms: 3,
+    bathrooms: 2,
+    area: 140,
+    parking: 2,
+    features: ["Plage", "Deck océan", "Cheminée", "Great Ocean Highway"],
+    image:
+      "https://images.unsplash.com/photo-1499793983690-e29dafd473d5?auto=format&fit=crop&w=1400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1499793983690-e29dafd473d5?auto=format&fit=crop&w=1400&q=80",
+    ],
+    featured: false,
+    yearBuilt: 2013,
+  },
 ];
 
 export interface PropertyFilters {
   category?: PropertyCategory | "all";
   district?: string;
+  zone?: ZoneId | "all";
   status?: PropertyStatus | "all";
   minPrice?: number;
   maxPrice?: number;
@@ -450,16 +581,24 @@ export function getPropertiesByCategory(category: PropertyCategory): Property[] 
   return properties.filter((p) => p.category === category);
 }
 
+export function getPropertiesByZone(zone: ZoneId): Property[] {
+  return properties.filter((p) => resolveZoneId(p.district, p.zone) === zone);
+}
+
 export function getDistricts(): string[] {
   return [...new Set(properties.map((p) => p.district))].sort();
 }
 
 export function filterProperties(filters: PropertyFilters): Property[] {
   return properties.filter((p) => {
+    const zone = resolveZoneId(p.district, p.zone);
     if (filters.category && filters.category !== "all" && p.category !== filters.category) {
       return false;
     }
     if (filters.district && p.district !== filters.district) {
+      return false;
+    }
+    if (filters.zone && filters.zone !== "all" && zone !== filters.zone) {
       return false;
     }
     if (filters.status && filters.status !== "all" && p.status !== filters.status) {
@@ -473,7 +612,7 @@ export function filterProperties(filters: PropertyFilters): Property[] {
     }
     if (filters.q) {
       const q = filters.q.toLowerCase();
-      const haystack = `${p.title} ${p.description} ${p.district} ${p.location}`.toLowerCase();
+      const haystack = `${p.title} ${p.description} ${p.district} ${p.location} Zone ${zone}`.toLowerCase();
       if (!haystack.includes(q)) return false;
     }
     return true;

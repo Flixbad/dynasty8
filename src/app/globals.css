@@ -228,3 +228,18 @@ img {
 .status-vendu {
   color: #c07070;
 }
+
+.zones-map-reveal {
+  animation: map-fade 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes map-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

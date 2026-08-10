@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Property } from "@/types";
+import { getZone } from "@/data/zones";
 import { formatArea, formatPrice, getCategoryLabel, getStatusLabel } from "@/lib/format";
 
 interface PropertyCardProps {
@@ -8,6 +9,8 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property, priority = false }: PropertyCardProps) {
+  const zone = getZone(property.zone);
+
   return (
     <article className="group flex flex-col">
       <Link href={`/biens/${property.slug}`} className="relative block overflow-hidden">
@@ -21,7 +24,15 @@ export function PropertyCard({ property, priority = false }: PropertyCardProps) 
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-80" />
-        <div className="absolute left-4 top-4 flex gap-2">
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+          {zone && (
+            <span
+              className="px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-ink backdrop-blur-sm"
+              style={{ background: zone.color }}
+            >
+              {zone.label}
+            </span>
+          )}
           <span className="bg-ink/70 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-gold-soft backdrop-blur-sm">
             {getCategoryLabel(property.category)}
           </span>

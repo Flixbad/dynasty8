@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { categories } from "@/data/categories";
+import { zones } from "@/data/zones";
 
 interface PropertyFiltersProps {
   districts: string[];
@@ -26,7 +27,7 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
   );
 
   return (
-    <div className="grid gap-4 border border-[var(--line)] bg-ink-soft/50 p-5 md:grid-cols-4">
+    <div className="grid gap-4 border border-[var(--line)] bg-ink-soft/50 p-5 md:grid-cols-2 lg:grid-cols-5">
       <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
         Recherche
         <input
@@ -41,6 +42,22 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
             router.push(`/biens?${params.toString()}`);
           }}
         />
+      </label>
+
+      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+        Zone
+        <select
+          className="input-field"
+          value={searchParams.get("zone") ?? "all"}
+          onChange={(e) => update("zone", e.target.value)}
+        >
+          <option value="all">Toutes</option>
+          {zones.map((z) => (
+            <option key={z.id} value={String(z.id)}>
+              {z.label} — {z.tagline}
+            </option>
+          ))}
+        </select>
       </label>
 
       <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">

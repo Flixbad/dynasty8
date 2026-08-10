@@ -42,6 +42,8 @@ Copier `.env.example` vers `.env.local` si besoin :
 | `/` | Accueil — hero, sélection, catégories |
 | `/biens` | Catalogue avec filtres |
 | `/biens/[slug]` | Fiche bien + formulaire |
+| `/zones` | Carte San Andreas & découverte Zones 1–4 |
+| `/zones/[slug]` | Biens d'une zone (+ détail par catégorie) |
 | `/categories` | Liste des typologies |
 | `/categories/[slug]` | Biens par catégorie |
 | `/agence` | Présentation & conseillers |
