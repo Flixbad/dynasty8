@@ -36,53 +36,52 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
   const zone = getZone(property.zone);
 
   return (
-    <div className="pb-24 pt-28">
-      <div className="relative h-[55vh] min-h-[360px] overflow-hidden">
+    <div className="pb-24">
+      <div className="relative h-[62vh] min-h-[420px] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={property.image}
-          alt={property.title}
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/20" />
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-10 md:px-8">
-          <div className="flex flex-wrap gap-2">
-            {zone && (
-              <Link
-                href={`/zones/${zone.slug}`}
-                className="px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-ink"
-                style={{ background: zone.color }}
+        <img src={property.image} alt={property.title} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/30" />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="container-x pb-10 pt-24">
+            <div className="flex flex-wrap gap-2">
+              {zone && (
+                <Link
+                  href={`/zones/${zone.slug}`}
+                  className="px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink"
+                  style={{ background: zone.color }}
+                >
+                  {zone.label}
+                </Link>
+              )}
+              <span className="bg-ink/50 px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.16em] text-cream backdrop-blur-md">
+                {getCategoryLabel(property.category)}
+              </span>
+              <span
+                className={`bg-ink/50 px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.16em] backdrop-blur-md status-${property.status}`}
               >
-                {zone.label}
-              </Link>
-            )}
-            <span className="bg-ink/60 px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-gold-soft backdrop-blur-sm">
-              {getCategoryLabel(property.category)}
-            </span>
-            <span
-              className={`bg-ink/60 px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] backdrop-blur-sm status-${property.status}`}
-            >
-              {getStatusLabel(property.status)}
-            </span>
+                {getStatusLabel(property.status)}
+              </span>
+            </div>
+            <h1 className="display mt-5 max-w-4xl text-4xl text-cream md:text-6xl">
+              {property.title}
+            </h1>
+            <p className="mt-3 font-light text-cream-muted">
+              {property.location} · {property.district}
+              {zone ? ` · ${zone.label}` : ""}
+            </p>
           </div>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl text-cream md:text-6xl">
-            {property.title}
-          </h1>
-          <p className="mt-3 text-cream-muted">
-            {property.location} · {property.district}
-            {zone ? ` · ${zone.label}` : ""}
-          </p>
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 md:grid-cols-[1.4fr_0.8fr] md:px-8">
+      <div className="container-x grid gap-14 py-14 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
         <div>
-          <p className="font-[family-name:var(--font-display)] text-4xl text-gold-soft">
-            {formatPrice(property.price)}
+          <p className="display text-4xl text-cream md:text-5xl">{formatPrice(property.price)}</p>
+          <div className="gold-rule mt-6" />
+          <p className="mt-8 text-lg font-light leading-relaxed text-cream-muted">
+            {property.longDescription}
           </p>
-          <p className="mt-6 text-lg leading-relaxed text-cream-muted">{property.longDescription}</p>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <Stat label="Surface" value={formatArea(property.area)} />
             {property.bedrooms !== undefined && (
               <Stat label="Chambres" value={String(property.bedrooms)} />
@@ -98,15 +97,13 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
             )}
           </div>
 
-          <div className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-3xl text-cream">
-              Équipements
-            </h2>
-            <ul className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-14">
+            <h2 className="display text-3xl text-cream">Équipements</h2>
+            <ul className="mt-6 flex flex-wrap gap-2">
               {property.features.map((feature) => (
                 <li
                   key={feature}
-                  className="border border-[var(--line)] px-3 py-2 text-sm text-cream-muted"
+                  className="bg-surface px-3 py-2 text-sm font-light text-cream-muted"
                 >
                   {feature}
                 </li>
@@ -115,9 +112,9 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
           </div>
 
           {property.gallery.length > 1 && (
-            <div className="mt-12">
-              <h2 className="font-[family-name:var(--font-display)] text-3xl text-cream">Galerie</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="mt-14">
+              <h2 className="display text-3xl text-cream">Galerie</h2>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {property.gallery.map((src) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -132,14 +129,14 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
           )}
         </div>
 
-        <aside className="space-y-6">
-          <div className="border border-[var(--line)] bg-ink-soft/60 p-6">
-            <p className="text-xs uppercase tracking-[0.25em] text-gold">Intéressé ?</p>
-            <p className="mt-3 text-sm text-cream-muted">
-              Un conseiller Dynasty8 organise une visite RP et sécurise la transaction.
+        <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+          <div className="border border-[var(--line)] bg-surface p-6">
+            <p className="eyebrow">Visite privée</p>
+            <p className="mt-3 text-sm font-light leading-relaxed text-cream-muted">
+              Un conseiller Dynasty8 organise la visite et sécurise la transaction RP.
             </p>
-            <Link href="/biens" className="btn-ghost mt-6 w-full">
-              Retour au catalogue
+            <Link href="/biens" className="btn-link mt-5">
+              Retour au catalogue <span aria-hidden>→</span>
             </Link>
           </div>
           <ContactForm propertyId={property.id} propertyTitle={property.title} />
@@ -151,9 +148,9 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="border border-[var(--line)] bg-ink-soft/40 px-4 py-4">
-      <p className="text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">{label}</p>
-      <p className="mt-2 font-[family-name:var(--font-display)] text-2xl text-cream">{value}</p>
+    <div className="border border-[var(--line)] bg-surface px-4 py-4">
+      <p className="text-[0.62rem] uppercase tracking-[0.18em] text-cream-muted">{label}</p>
+      <p className="display mt-2 text-2xl text-cream">{value}</p>
     </div>
   );
 }

@@ -6,67 +6,76 @@ import { formatArea, formatPrice, getCategoryLabel, getStatusLabel } from "@/lib
 interface PropertyCardProps {
   property: Property;
   priority?: boolean;
+  variant?: "default" | "featured" | "compact";
 }
 
-export function PropertyCard({ property, priority = false }: PropertyCardProps) {
+export function PropertyCard({
+  property,
+  priority = false,
+  variant = "default",
+}: PropertyCardProps) {
   const zone = getZone(property.zone);
+  const featured = variant === "featured";
 
   return (
-    <article className="group flex flex-col">
-      <Link href={`/biens/${property.slug}`} className="relative block overflow-hidden">
-        <div className="aspect-[4/3] overflow-hidden bg-ink-elevated">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={property.image}
-            alt={property.title}
-            className="property-media h-full w-full object-cover"
-            loading={priority ? "eager" : "lazy"}
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-80" />
-        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+    <article className={`group ${featured ? "h-full" : ""}`}>
+      <Link
+        href={`/biens/${property.slug}`}
+        className={`relative block overflow-hidden bg-ink-elevated ${
+          featured ? "h-full min-h-[28rem] md:min-h-[36rem]" : "aspect-[5/4]"
+        }`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={property.image}
+          alt={property.title}
+          className="property-media absolute inset-0 h-full w-full object-cover"
+          loading={priority ? "eager" : "lazy"}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
+
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2 md:left-5 md:top-5">
           {zone && (
             <span
-              className="px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-ink backdrop-blur-sm"
+              className="px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-ink"
               style={{ background: zone.color }}
             >
               {zone.label}
             </span>
           )}
-          <span className="bg-ink/70 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-gold-soft backdrop-blur-sm">
+          <span className="bg-ink/55 px-2.5 py-1 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-cream backdrop-blur-md">
             {getCategoryLabel(property.category)}
           </span>
-          <span
-            className={`bg-ink/70 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] backdrop-blur-sm status-${property.status}`}
-          >
-            {getStatusLabel(property.status)}
-          </span>
         </div>
-        <p className="absolute bottom-4 left-4 font-[family-name:var(--font-display)] text-2xl text-cream">
-          {formatPrice(property.price)}
-        </p>
-      </Link>
 
-      <div className="flex flex-1 flex-col border border-t-0 border-[var(--line)] bg-ink-soft/60 px-4 py-5">
-        <Link href={`/biens/${property.slug}`}>
-          <h3 className="font-[family-name:var(--font-display)] text-xl leading-snug text-cream transition-colors group-hover:text-gold-soft">
+        <div
+          className={`absolute inset-x-0 bottom-0 p-5 md:p-6 ${featured ? "md:p-8" : ""}`}
+        >
+          <p
+            className={`display text-cream ${featured ? "text-4xl md:text-5xl" : "text-2xl md:text-[1.75rem]"}`}
+          >
+            {formatPrice(property.price)}
+          </p>
+          <h3
+            className={`mt-2 font-medium leading-snug text-cream transition-colors group-hover:text-gold-soft ${
+              featured ? "text-xl md:text-2xl" : "text-[1.05rem]"
+            }`}
+          >
             {property.title}
           </h3>
-        </Link>
-        <p className="mt-2 text-sm text-cream-muted">
-          {property.district} · {formatArea(property.area)}
-          {property.bedrooms ? ` · ${property.bedrooms} ch.` : ""}
-        </p>
-        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-cream-muted/90">
-          {property.description}
-        </p>
-        <Link
-          href={`/biens/${property.slug}`}
-          className="mt-5 text-xs uppercase tracking-[0.2em] text-gold transition-colors hover:text-gold-soft"
-        >
-          Voir le bien →
-        </Link>
-      </div>
+          <div className="listing-meta mt-3">
+            <span>{property.district}</span>
+            <span>{formatArea(property.area)}</span>
+            {property.bedrooms !== undefined && <span>{property.bedrooms} ch.</span>}
+            <span className={`status-${property.status}`}>{getStatusLabel(property.status)}</span>
+          </div>
+          {featured && (
+            <p className="mt-4 max-w-lg text-sm font-light leading-relaxed text-cream-muted md:text-base">
+              {property.description}
+            </p>
+          )}
+        </div>
+      </Link>
     </article>
   );
 }

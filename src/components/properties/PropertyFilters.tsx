@@ -27,12 +27,12 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
   );
 
   return (
-    <div className="grid gap-4 border border-[var(--line)] bg-ink-soft/50 p-5 md:grid-cols-2 lg:grid-cols-5">
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+    <div className="filter-bar">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Recherche
         <input
           className="input-field normal-case tracking-normal"
-          placeholder="Quartier, titre..."
+          placeholder="Quartier, titre, adresse…"
           defaultValue={searchParams.get("q") ?? ""}
           onChange={(e) => {
             const value = e.target.value;
@@ -44,7 +44,7 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
         />
       </label>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Zone
         <select
           className="input-field"
@@ -54,20 +54,20 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
           <option value="all">Toutes</option>
           {zones.map((z) => (
             <option key={z.id} value={String(z.id)}>
-              {z.label} — {z.tagline}
+              {z.label}
             </option>
           ))}
         </select>
       </label>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
-        Catégorie
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
+        Type
         <select
           className="input-field"
           value={searchParams.get("category") ?? "all"}
           onChange={(e) => update("category", e.target.value)}
         >
-          <option value="all">Toutes</option>
+          <option value="all">Tous</option>
           {categories.map((c) => (
             <option key={c.slug} value={c.slug}>
               {c.label}
@@ -76,7 +76,7 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
         </select>
       </label>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Quartier
         <select
           className="input-field"
@@ -92,7 +92,7 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
         </select>
       </label>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Statut
         <select
           className="input-field"

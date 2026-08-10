@@ -34,35 +34,29 @@ export default async function ZoneDetailPage({ params }: ZonePageProps) {
   const breakdown = groupPropertiesByCategoryCount(list);
 
   return (
-    <div className="pb-24 pt-32">
+    <div className="pb-24 pt-32 md:pt-36">
       <div className="relative overflow-hidden border-b border-[var(--line)]">
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-50"
           style={{
-            background: `radial-gradient(ellipse at 30% 40%, ${zone.colorSoft}, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(201,162,39,0.08), transparent 40%)`,
+            background: `radial-gradient(ellipse at 30% 40%, ${zone.colorSoft}, transparent 55%)`,
           }}
         />
-        <div className="relative mx-auto max-w-7xl px-5 py-16 md:px-8">
-          <Link
-            href="/zones"
-            className="text-xs uppercase tracking-[0.2em] text-cream-muted hover:text-gold"
-          >
+        <div className="relative container-x py-14 md:py-16">
+          <Link href="/zones" className="btn-link !normal-case !tracking-normal !text-cream-muted">
             ← Toutes les zones
           </Link>
-          <div className="mt-6 flex items-center gap-3">
-            <span className="h-3 w-12" style={{ background: zone.color }} aria-hidden />
-            <p className="text-xs uppercase tracking-[0.3em] text-cream-muted">{zone.label}</p>
+          <div className="mt-8 flex items-center gap-3">
+            <span className="h-2 w-12" style={{ background: zone.color }} aria-hidden />
+            <p className="text-[0.7rem] uppercase tracking-[0.25em] text-cream-muted">{zone.label}</p>
           </div>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-5xl text-cream md:text-6xl">
-            {zone.tagline}
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-cream-muted">{zone.description}</p>
-
+          <h1 className="display mt-4 text-5xl text-cream md:text-6xl">{zone.tagline}</h1>
+          <p className="mt-5 max-w-2xl font-light text-lg text-cream-muted">{zone.description}</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {zone.highlights.map((h) => (
               <span
                 key={h}
-                className="border border-[var(--line)] px-3 py-1.5 text-xs uppercase tracking-[0.14em] text-cream-muted"
+                className="bg-surface px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.14em] text-cream-muted"
               >
                 {h}
               </span>
@@ -71,21 +65,20 @@ export default async function ZoneDetailPage({ params }: ZonePageProps) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 py-14 md:px-8">
-        <div className="mb-10 grid gap-8 lg:grid-cols-[1fr_280px]">
+      <div className="container-x py-14">
+        <div className="mb-10 grid gap-8 lg:grid-cols-[1fr_260px]">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold">Biens en {zone.label}</p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl text-cream">
-              {list.length} bien{list.length > 1 ? "s" : ""} disponible
-              {list.length > 1 ? "s" : ""}
+            <p className="eyebrow">Biens en {zone.label}</p>
+            <h2 className="display mt-3 text-4xl text-cream">
+              {list.length} bien{list.length > 1 ? "s" : ""}
             </h2>
           </div>
 
-          <div className="border border-[var(--line)] bg-ink-soft/50 p-5">
+          <div className="border border-[var(--line)] bg-surface p-5">
             <p className="text-[0.65rem] uppercase tracking-[0.2em] text-cream-muted">
               Par catégorie
             </p>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-2.5">
               {breakdown.length === 0 && (
                 <li className="text-sm text-cream-muted">Aucun bien pour l&apos;instant.</li>
               )}
@@ -99,13 +92,6 @@ export default async function ZoneDetailPage({ params }: ZonePageProps) {
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
-              Quartiers
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-cream-muted">
-              {zone.districts.slice(0, 8).join(" · ")}
-              {zone.districts.length > 8 ? "…" : ""}
-            </p>
           </div>
         </div>
 
@@ -122,7 +108,7 @@ export default async function ZoneDetailPage({ params }: ZonePageProps) {
                 key={z.id}
                 href={`/zones/${z.slug}`}
                 className="btn-ghost !py-3"
-                style={{ borderColor: `${z.color}55` }}
+                style={{ borderColor: `${z.color}66` }}
               >
                 {z.label}
               </Link>

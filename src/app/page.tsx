@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { TrustStrip } from "@/components/home/TrustStrip";
 import { FeaturedProperties } from "@/components/home/FeaturedProperties";
 import { CategoryShowcase } from "@/components/home/CategoryShowcase";
 import { ZonesTeaser } from "@/components/home/ZonesTeaser";
@@ -11,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <div className="gold-line" />
+      <TrustStrip />
       <FeaturedProperties properties={featured} />
       <ZonesTeaser />
       <CategoryShowcase />

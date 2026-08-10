@@ -3,55 +3,53 @@ import { categories } from "@/data/categories";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-[var(--line)] bg-ink-soft">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-8">
-        <div className="md:col-span-1">
-          <p className="font-[family-name:var(--font-display)] text-2xl tracking-[0.12em] text-gradient-gold">
-            DYNASTY8
+    <footer className="mt-auto border-t border-[var(--line)] bg-ink">
+      <div className="container-x grid gap-14 py-16 md:grid-cols-12 md:py-20">
+        <div className="md:col-span-4">
+          <p className="display text-3xl tracking-[0.06em] text-cream">
+            DYNASTY<span className="text-gold">8</span>
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-cream-muted">
-            L&apos;agence immobilière de référence à Los Santos. Maisons, villas, entrepôts et
-            garages — du Rockford Hills au désert de Senora.
+          <p className="mt-5 max-w-xs text-sm font-light leading-relaxed text-cream-muted">
+            Agence immobilière de prestige à Los Santos. Transactions résidentielles et commerciales
+            sur l&apos;ensemble de San Andreas.
           </p>
         </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-gold">Explorer</p>
-          <ul className="mt-4 space-y-2 text-sm text-cream-muted">
+        <div className="md:col-span-2">
+          <p className="text-[0.65rem] uppercase tracking-[0.22em] text-cream-muted">Explorer</p>
+          <ul className="mt-5 space-y-3 text-sm text-cream">
             <li>
-              <Link href="/biens" className="hover:text-cream">
-                Tous les biens
+              <Link href="/biens" className="transition-colors hover:text-gold-soft">
+                Propriétés
               </Link>
             </li>
             <li>
-              <Link href="/zones" className="hover:text-cream">
-                Zones 1–4
+              <Link href="/zones" className="transition-colors hover:text-gold-soft">
+                Zones
               </Link>
             </li>
             <li>
-              <Link href="/categories" className="hover:text-cream">
-                Catégories
+              <Link href="/agence" className="transition-colors hover:text-gold-soft">
+                Agence
               </Link>
             </li>
             <li>
-              <Link href="/agence" className="hover:text-cream">
-                L&apos;agence
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-cream">
+              <Link href="/contact" className="transition-colors hover:text-gold-soft">
                 Contact
               </Link>
             </li>
           </ul>
         </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-gold">Catégories</p>
-          <ul className="mt-4 space-y-2 text-sm text-cream-muted">
-            {categories.slice(0, 6).map((c) => (
-              <li key={c.slug}>
-                <Link href={`/categories/${c.slug}`} className="hover:text-cream">
+        <div className="md:col-span-3">
+          <p className="text-[0.65rem] uppercase tracking-[0.22em] text-cream-muted">Typologies</p>
+          <ul className="mt-5 columns-2 space-y-3 text-sm text-cream">
+            {categories.map((c) => (
+              <li key={c.slug} className="break-inside-avoid">
+                <Link
+                  href={`/categories/${c.slug}`}
+                  className="transition-colors hover:text-gold-soft"
+                >
                   {c.label}
                 </Link>
               </li>
@@ -59,22 +57,22 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-gold">Agence</p>
-          <ul className="mt-4 space-y-2 text-sm text-cream-muted">
-            <li>214 Rockford Plaza</li>
-            <li>Los Santos, SA</li>
-            <li>Tél. 555-DYNASTY</li>
+        <div className="md:col-span-3">
+          <p className="text-[0.65rem] uppercase tracking-[0.22em] text-cream-muted">Bureau</p>
+          <ul className="mt-5 space-y-2 text-sm font-light text-cream-muted">
+            <li className="text-cream">214 Rockford Plaza</li>
+            <li>Los Santos, San Andreas</li>
+            <li>555-DYNASTY</li>
             <li>contact@dynasty8.ls</li>
-            <li className="pt-2 text-cream">Ouvert 24/7 — GTA RP</li>
           </ul>
         </div>
       </div>
 
-      <div className="gold-line" />
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-cream-muted md:flex-row md:px-8">
-        <p>© {new Date().getFullYear()} Dynasty8 Realty — Entreprise fictive GTA RP.</p>
-        <p>Rockford Hills · Vinewood · Del Perro · Blaine County</p>
+      <div className="border-t border-[var(--line)]">
+        <div className="container-x flex flex-col items-start justify-between gap-3 py-6 text-[0.7rem] tracking-wide text-cream-muted md:flex-row md:items-center">
+          <p>© {new Date().getFullYear()} Dynasty8 Realty — Entreprise fictive GTA RP.</p>
+          <p>Rockford Hills · Vinewood · Del Perro · Blaine County</p>
+        </div>
       </div>
     </footer>
   );

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Instrument_Serif, Manrope } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
+const display = Instrument_Serif({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
 });
 
-const body = Outfit({
+const body = Manrope({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -23,15 +23,6 @@ export const metadata: Metadata = {
   },
   description:
     "Agence immobilière Dynasty8 pour GTA RP. Villas, appartements, entrepôts, garages et terrains à Los Santos et Blaine County.",
-  keywords: [
-    "Dynasty8",
-    "GTA RP",
-    "immobilier",
-    "Los Santos",
-    "Rockford Hills",
-    "villas",
-    "garages",
-  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

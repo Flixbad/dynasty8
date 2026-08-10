@@ -2,29 +2,36 @@ import Link from "next/link";
 
 export function AgencyCTA() {
   return (
-    <section className="relative overflow-hidden border-y border-[var(--line)]">
+    <section className="relative min-h-[70vh] overflow-hidden">
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80"
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80"
           alt="Skyline de Los Santos"
-          className="h-full w-full object-cover opacity-35"
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-emerald/30" />
+        <div className="absolute inset-0 bg-ink/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-28 md:px-8">
-        <p className="text-xs uppercase tracking-[0.3em] text-gold">Dynasty8</p>
-        <h2 className="max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-tight text-cream md:text-6xl">
-          Une signature pour chaque transaction à Los Santos
+      <div className="relative container-x flex min-h-[70vh] flex-col justify-center py-24">
+        <div className="gold-rule mb-6" />
+        <p className="eyebrow">L&apos;agence</p>
+        <h2 className="display mt-4 max-w-2xl text-4xl leading-[1.1] text-cream md:text-6xl">
+          Une signature pour chaque transaction
         </h2>
-        <p className="max-w-xl text-cream-muted">
-          Estimation, visite, négociation et remise des clés. Notre équipe accompagne citoyens,
-          entreprises et collectionneurs sur tout le comté.
+        <p className="mt-6 max-w-lg font-light leading-relaxed text-cream-muted">
+          Estimation, visite privée, négociation et remise des clés. Dynasty8 accompagne citoyens et
+          organisations sur tout San Andreas.
         </p>
-        <Link href="/agence" className="btn-primary">
-          Découvrir l&apos;agence
-        </Link>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Link href="/agence" className="btn-primary">
+            Rencontrer l&apos;équipe
+          </Link>
+          <Link href="/contact" className="btn-ghost">
+            Prendre rendez-vous
+          </Link>
+        </div>
       </div>
     </section>
   );

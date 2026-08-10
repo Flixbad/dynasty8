@@ -1,5 +1,4 @@
-import type { ZoneId, ZoneMeta } from "@/types";
-import type { PropertyCategory } from "@/types";
+import type { PropertyCategory, ZoneId, ZoneMeta } from "@/types";
 
 export type { ZoneId, ZoneMeta };
 

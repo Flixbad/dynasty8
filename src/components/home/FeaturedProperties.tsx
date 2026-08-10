@@ -7,24 +7,46 @@ interface FeaturedPropertiesProps {
 }
 
 export function FeaturedProperties({ properties }: FeaturedPropertiesProps) {
-  return (
-    <section className="mx-auto max-w-7xl px-5 py-24 md:px-8">
-      <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Sélection</p>
-          <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl text-cream md:text-5xl">
-            Biens d&apos;exception
-          </h2>
-        </div>
-        <Link href="/biens" className="btn-ghost !py-3">
-          Voir tout le catalogue
-        </Link>
-      </div>
+  const [hero, ...rest] = properties;
+  const side = rest.slice(0, 2);
+  const grid = rest.slice(2, 5);
 
-      <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-        {properties.slice(0, 6).map((property, index) => (
-          <PropertyCard key={property.id} property={property} priority={index < 2} />
-        ))}
+  if (!hero) return null;
+
+  return (
+    <section className="section-y">
+      <div className="container-x">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow">Sélection exclusive</p>
+            <h2 className="display mt-4 text-4xl text-cream md:text-5xl lg:text-[3.5rem]">
+              Propriétés d&apos;exception
+            </h2>
+          </div>
+          <Link href="/biens" className="btn-link">
+            Voir tout le catalogue
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
+
+        <div className="grid gap-4 md:gap-5 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <PropertyCard property={hero} priority variant="featured" />
+          </div>
+          <div className="grid gap-4 md:gap-5 lg:col-span-5">
+            {side.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+        </div>
+
+        {grid.length > 0 && (
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 lg:grid-cols-3">
+            {grid.map((property, index) => (
+              <PropertyCard key={property.id} property={property} priority={index === 0} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

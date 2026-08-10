@@ -46,19 +46,20 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5 border border-[var(--line)] bg-ink-soft/50 p-6 md:p-8">
+    <form onSubmit={onSubmit} className="space-y-7 border border-[var(--line)] bg-surface p-7 md:p-9">
       {propertyTitle && (
-        <p className="text-sm text-gold">
-          Demande concernant : <span className="text-cream">{propertyTitle}</span>
-        </p>
+        <div className="border-b border-[var(--line)] pb-5">
+          <p className="text-[0.65rem] uppercase tracking-[0.2em] text-gold">Bien concerné</p>
+          <p className="mt-2 text-cream">{propertyTitle}</p>
+        </div>
       )}
 
-      <div className="grid gap-5 md:grid-cols-2">
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <div className="grid gap-6 md:grid-cols-2">
+        <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
           Nom
           <input name="name" required className="input-field normal-case tracking-normal" />
         </label>
-        <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+        <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
           Email
           <input
             name="email"
@@ -69,24 +70,28 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
         </label>
       </div>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Téléphone
-        <input name="phone" className="input-field normal-case tracking-normal" placeholder="555-..." />
+        <input
+          name="phone"
+          className="input-field normal-case tracking-normal"
+          placeholder="555-..."
+        />
       </label>
 
-      <label className="flex flex-col gap-2 text-xs uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
         Message
         <textarea
           name="message"
           required
           rows={5}
           className="input-field normal-case tracking-normal resize-y"
-          placeholder="Décrivez votre projet, budget, quartier souhaité..."
+          placeholder="Projet, budget, quartier souhaité…"
         />
       </label>
 
-      <button type="submit" className="btn-primary w-full md:w-auto" disabled={status === "loading"}>
-        {status === "loading" ? "Envoi..." : "Envoyer la demande"}
+      <button type="submit" className="btn-primary" disabled={status === "loading"}>
+        {status === "loading" ? "Envoi…" : "Envoyer la demande"}
       </button>
 
       {status === "success" && (

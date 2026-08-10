@@ -1,47 +1,53 @@
 import Link from "next/link";
+import { zones } from "@/data/zones";
 
 export function ZonesTeaser() {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 md:px-8">
-      <div className="grid items-center gap-10 lg:grid-cols-2">
-        <div className="relative overflow-hidden border border-[var(--line)]">
+    <section className="section-y">
+      <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="relative overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/maps/san-andreas-zones.png"
-            alt="Carte des zones San Andreas"
-            className="zones-map-reveal aspect-[4/3] w-full object-cover object-center"
+            alt="Carte des zones San Andreas Dynasty8"
+            className="zones-map-reveal w-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
-          <div className="absolute bottom-5 left-5 flex gap-2">
-            {[
-              { c: "#c94a3a", l: "1" },
-              { c: "#3a7fc9", l: "2" },
-              { c: "#d4b83a", l: "3" },
-              { c: "#3aa85a", l: "4" },
-            ].map((z) => (
-              <span
-                key={z.l}
-                className="flex h-8 w-8 items-center justify-center text-xs font-semibold text-ink"
-                style={{ background: z.c }}
-              >
-                {z.l}
-              </span>
-            ))}
-          </div>
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Carte Dynasty8</p>
-          <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl text-cream md:text-5xl">
-            Quatre zones, toute l&apos;île
+          <p className="eyebrow">Carte San Andreas</p>
+          <h2 className="display mt-4 text-4xl text-cream md:text-5xl">
+            Quatre zones,<br />toute l&apos;île
           </h2>
-          <p className="mt-4 text-cream-muted">
-            Zone 1 rouge pour le sud et le désert, Zone 2 bleue pour le cœur urbain, Zone 3 or pour
-            les collines chic, Zone 4 verte pour le nord sauvage. Explorez la carte et filtrez les
-            biens.
+          <p className="mt-5 max-w-md font-light leading-relaxed text-cream-muted">
+            Naviguez par secteur comme dans une vraie agence : sud industriel, cœur urbain, collines
+            premium ou nord sauvage.
           </p>
-          <Link href="/zones" className="btn-primary mt-8">
-            Découvrir les zones
+
+          <ul className="mt-8 space-y-3">
+            {zones.map((zone) => (
+              <li key={zone.id}>
+                <Link
+                  href={`/zones/${zone.slug}`}
+                  className="group flex items-center gap-4 border-b border-[var(--line)] py-3 transition-colors hover:border-[var(--line-strong)]"
+                >
+                  <span
+                    className="h-2 w-8 shrink-0 transition-transform group-hover:scale-x-110"
+                    style={{ background: zone.color }}
+                  />
+                  <span className="text-sm font-medium text-cream">{zone.label}</span>
+                  <span className="flex-1 text-sm font-light text-cream-muted">{zone.tagline}</span>
+                  <span className="text-gold-soft opacity-0 transition-opacity group-hover:opacity-100">
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <Link href="/zones" className="btn-primary mt-10">
+            Ouvrir la carte
           </Link>
         </div>
       </div>

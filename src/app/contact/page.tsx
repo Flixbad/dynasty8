@@ -8,19 +8,18 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-7xl px-5 pb-24 pt-32 md:px-8">
-      <div className="grid gap-14 lg:grid-cols-2">
+    <div className="container-x pb-24 pt-32 md:pt-36">
+      <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Contact</p>
-          <h1 className="mt-3 font-[family-name:var(--font-display)] text-5xl text-cream md:text-6xl">
+          <p className="eyebrow">Contact</p>
+          <h1 className="display mt-4 text-5xl text-cream md:text-6xl">
             Parlons de votre prochain bien
           </h1>
-          <p className="mt-5 max-w-md text-cream-muted">
-            Estimation, achat, vente ou location — laissez un message à l&apos;équipe Dynasty8. Nous
-            répondons en jeu sur le serveur RP.
+          <p className="mt-5 max-w-md font-light leading-relaxed text-cream-muted">
+            Estimation, achat, vente ou location — un conseiller Dynasty8 vous répond en jeu.
           </p>
 
-          <div className="mt-12 space-y-6 border-t border-[var(--line)] pt-8">
+          <div className="mt-14 space-y-7 border-t border-[var(--line)] pt-10">
             <Info label="Adresse" value="214 Rockford Plaza, Los Santos" />
             <Info label="Téléphone" value="555-DYNASTY" />
             <Info label="Email" value="contact@dynasty8.ls" />
@@ -37,8 +36,8 @@ export default function ContactPage() {
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[0.65rem] uppercase tracking-[0.2em] text-gold">{label}</p>
-      <p className="mt-1 text-cream">{value}</p>
+      <p className="text-[0.65rem] uppercase tracking-[0.2em] text-cream-muted">{label}</p>
+      <p className="mt-1.5 text-cream">{value}</p>
     </div>
   );
 }

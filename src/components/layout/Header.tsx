@@ -5,12 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/", label: "Accueil" },
-  { href: "/biens", label: "Biens" },
+  { href: "/biens", label: "Propriétés" },
   { href: "/zones", label: "Zones" },
-  { href: "/categories", label: "Catégories" },
-  { href: "/agence", label: "L'agence" },
-  { href: "/contact", label: "Contact" },
+  { href: "/categories", label: "Typologies" },
+  { href: "/agence", label: "Agence" },
 ];
 
 export function Header() {
@@ -19,7 +17,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -33,68 +31,93 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || open
-          ? "bg-ink/90 backdrop-blur-md border-b border-[var(--line)]"
+          ? "bg-ink/85 backdrop-blur-xl border-b border-[var(--line)]"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" className="group flex flex-col leading-none">
-          <span className="font-[family-name:var(--font-display)] text-2xl tracking-[0.12em] brand-shimmer md:text-3xl">
-            DYNASTY8
-          </span>
-          <span className="mt-1 text-[0.65rem] uppercase tracking-[0.35em] text-cream-muted">
-            Los Santos Realty
+      <div className="container-x flex h-[4.5rem] items-center justify-between md:h-[5.25rem]">
+        <Link href="/" className="relative z-10 flex items-baseline gap-2">
+          <span className="display text-[1.65rem] tracking-[0.08em] text-cream md:text-[1.85rem]">
+            DYNASTY<span className="text-gold">8</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-9 lg:flex">
           {links.map((link) => {
-            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            const active =
+              pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-xs uppercase tracking-[0.22em] transition-colors duration-300 ${
-                  active ? "text-gold-soft" : "text-cream-muted hover:text-cream"
+                className={`relative text-[0.8rem] font-medium tracking-wide transition-colors duration-300 ${
+                  active ? "text-cream" : "text-cream-muted hover:text-cream"
                 }`}
               >
                 {link.label}
+                {active && (
+                  <span className="absolute -bottom-1 left-0 h-px w-full bg-gold" />
+                )}
               </Link>
             );
           })}
-          <Link href="/contact" className="btn-primary !py-2.5 !px-4">
-            Estimer
-          </Link>
         </nav>
+
+        <div className="hidden items-center gap-5 lg:flex">
+          <Link
+            href="/contact"
+            className="text-[0.8rem] font-medium text-cream-muted transition-colors hover:text-cream"
+          >
+            Contact
+          </Link>
+          <Link href="/biens" className="btn-primary !py-3 !px-5">
+            Voir les biens
+          </Link>
+        </div>
 
         <button
           type="button"
-          aria-label="Menu"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
+          className="relative z-10 flex h-11 w-11 items-center justify-center lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className={`h-px w-6 bg-cream transition ${open ? "translate-y-[4px] rotate-45" : ""}`} />
-          <span className={`h-px w-6 bg-cream transition ${open ? "opacity-0" : ""}`} />
-          <span className={`h-px w-6 bg-cream transition ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
+          <span className="sr-only">Menu</span>
+          <div className="flex w-6 flex-col gap-1.5">
+            <span
+              className={`h-px w-full bg-cream transition duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
+            />
+            <span className={`h-px w-full bg-cream transition duration-300 ${open ? "opacity-0" : ""}`} />
+            <span
+              className={`h-px w-full bg-cream transition duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
+            />
+          </div>
         </button>
       </div>
 
-      {open && (
-        <nav className="border-t border-[var(--line)] bg-ink/95 px-5 py-6 lg:hidden">
-          <ul className="flex flex-col gap-4">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block text-sm uppercase tracking-[0.2em] text-cream"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div
+        className={`overflow-hidden border-t border-[var(--line)] bg-ink/95 backdrop-blur-xl transition-all duration-400 lg:hidden ${
+          open ? "max-h-[28rem] opacity-100" : "max-h-0 border-transparent opacity-0"
+        }`}
+      >
+        <nav className="container-x flex flex-col gap-1 py-6">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="display py-3 text-3xl text-cream"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/contact" className="display py-3 text-3xl text-gold-soft">
+            Contact
+          </Link>
+          <Link href="/biens" className="btn-primary mt-4 w-full">
+            Voir les biens
+          </Link>
         </nav>
-      )}
+      </div>
     </header>
   );
 }
