@@ -5,8 +5,8 @@
   "description": "Dynasty8 — agence immobilière fictive GTA RP (Los Santos)",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "export": "next build",
+    "build": "next build && node scripts/fix-hostinger-assets.mjs",
+    "export": "npm run build",
     "start": "next start",
     "lint": "eslint",
     "zip:hostinger": "npm run build && node scripts/zip-hostinger.mjs"

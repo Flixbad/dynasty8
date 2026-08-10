@@ -6,31 +6,34 @@ Dynasty8 est exporté en **site statique** (`out/`). Aucun Node.js n’est requi
 
 ```bash
 npm install
-npm run build
+npm run zip:hostinger
 ```
 
-Le dossier `out/` contient tout le site prêt à uploader.
+Cela génère :
+- `out/` — site prêt à uploader (dossier assets renommé `next/` pour Hostinger)
+- `dynasty8-hostinger.zip` — archive à envoyer
 
-Astuce Windows (PowerShell) — zip pour upload :
-
-```powershell
-npm run build
-Compress-Archive -Path out\* -DestinationPath dynasty8-hostinger.zip -Force
-```
+> Important : le dossier Next `_next` est renommé en `next` automatiquement.
+> Sur Hostinger, les dossiers qui commencent par `_` peuvent bloquer le CSS/JS.
 
 ## 2. Upload Hostinger
 
-1. Connecte-toi à **hPanel** → **Fichiers** → **Gestionnaire de fichiers**
-2. Ouvre `public_html` (ou le dossier du sous-domaine)
-3. **Vide** le contenu actuel si besoin (garde éventuellement `cgi-bin`)
-4. Upload le contenu de `out/` **à la racine** de `public_html`
-   - Doit y avoir `index.html`, `.htaccess`, dossiers `biens/`, `_next/`, etc.
-5. Si tu uploades un zip : extrais-le **dans** `public_html` (pas dans un sous-dossier)
+1. hPanel → **Fichiers** → **Gestionnaire de fichiers**
+2. Ouvre `public_html` (ou le dossier du sous-domaine `dynasty8`)
+3. **Supprime tout** l’ancien contenu (sauf éventuellement `cgi-bin`)
+4. Upload `dynasty8-hostinger.zip` puis **Extraire ici**
+5. Vérifie que tu as bien à la racine :
+   - `index.html`
+   - `.htaccess`
+   - dossier `next/` (pas `_next`)
+   - dossiers `biens/`, `zones/`, etc.
+6. Hard refresh navigateur : `Ctrl + Shift + R`
 
-### FTP (FileZilla)
+### Si le design ne s’affiche toujours pas
 
-- Hôte : fourni par Hostinger  
-- Upload **tout** le contenu de `out/` vers `public_html/`
+1. Ouvre `https://ton-domaine/next/static/chunks/` — tu dois voir des fichiers `.css` / `.js`
+2. Si 403/404 : le dossier `next/` n’est pas bien uploadé → ré-extrais le zip
+3. Vide le cache Hostinger (hPanel → Cache) si activé
 
 ## 3. Vérifications
 

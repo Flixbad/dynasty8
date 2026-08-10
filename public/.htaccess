@@ -1,22 +1,30 @@
-# Hostinger / Apache — site Dynasty8 (export Next.js statique)
+# Hostinger / Apache — Dynasty8 (export Next.js)
 DirectoryIndex index.html
 
-# Forcer HTTPS si disponible (décommente si besoin)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Types MIME corrects (évite CSS/JS non appliqués)
+AddType text/css .css
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType font/woff2 .woff2
 
-# Servir les dossiers avec trailing slash
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js
+</IfModule>
+
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+
+# Ne pas toucher aux fichiers/dossiers existants (css, js, images)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Trailing slash pour les pages HTML exportées
 RewriteCond %{REQUEST_URI} !/$
 RewriteRule ^(.*)$ /$1/ [L,R=301]
 
-# Fallback 404 Next
 ErrorDocument 404 /404.html
 
-# Cache assets
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css "access plus 1 month"
@@ -28,9 +36,14 @@ ErrorDocument 404 /404.html
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# Sécurité basique
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\.(css)$">
+    Header set Content-Type "text/css; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.(js|mjs)$">
+    Header set Content-Type "application/javascript; charset=utf-8"
+  </FilesMatch>
 </IfModule>
