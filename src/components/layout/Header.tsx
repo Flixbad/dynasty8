@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUI } from "@/lib/ui";
 import { useFavorites } from "@/lib/favorites";
+import { AGENCY_CONTACT_URL } from "@/lib/contact";
 
 const links = [
   { href: "/biens", label: "Propriétés" },
@@ -84,9 +85,14 @@ export function Header() {
                 </span>
               )}
             </Link>
-            <Link href="/contact" className="btn-primary !px-4 !py-2.5 text-[0.7rem]">
+            <a
+              href={AGENCY_CONTACT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary !px-4 !py-2.5 text-[0.7rem]"
+            >
               Contact
-            </Link>
+            </a>
             <button
               type="button"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 md:hidden"
@@ -136,6 +142,14 @@ export function Header() {
               >
                 Recherche
               </button>
+              <a
+                href={AGENCY_CONTACT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="display py-3 text-4xl text-ivory"
+              >
+                Contact
+              </a>
             </nav>
           </motion.div>
         )}

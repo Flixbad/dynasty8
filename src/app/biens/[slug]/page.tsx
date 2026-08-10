@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactCTA } from "@/components/contact/ContactCTA";
 import { PropertyGallery } from "@/components/properties/PropertyGallery";
 import { PropertyDetailClient } from "@/components/properties/PropertyDetailClient";
 import { getPropertyBySlug, properties } from "@/data/properties";
@@ -120,14 +120,19 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
         <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
           <div className="border border-[var(--line)] bg-surface p-6">
             <p className="eyebrow">Visite privée</p>
-            <p className="mt-3 text-sm font-light leading-relaxed text-cream-muted">
-              Un conseiller Dynasty8 organise la visite et sécurise la transaction RP.
+            <p className="mt-3 text-sm font-light leading-relaxed text-muted">
+              Contact via Life Oren RP ou la centrale en jeu.
             </p>
-            <Link href="/biens" className="btn-link mt-5">
-              Retour au catalogue <span aria-hidden>→</span>
-            </Link>
+            <a
+              href="https://life.oren-rp.com/profile/cmqr56etp09xpo319qrtdxkxy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-link mt-5"
+            >
+              Ouvrir le profil Life <span aria-hidden>↗</span>
+            </a>
           </div>
-          <ContactForm propertyId={property.id} propertyTitle={property.title} />
+          <ContactCTA propertyTitle={property.title} />
         </aside>
       </div>
     </div>

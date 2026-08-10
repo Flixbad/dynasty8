@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Magnetic } from "@/components/motion/Magnetic";
+import { AGENCY_CONTACT_URL } from "@/lib/contact";
 
 export function AgencyCTA() {
   return (
@@ -29,14 +29,17 @@ export function AgencyCTA() {
           tout San Andreas.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Magnetic>
-            <Link href="/agence" className="btn-primary">
-              Rencontrer l&apos;équipe
-            </Link>
-          </Magnetic>
-          <Link href="/contact" className="btn-ghost">
-            Prendre rendez-vous
+          <Link href="/agence" className="btn-primary">
+            Rencontrer l&apos;équipe
           </Link>
+          <a
+            href={AGENCY_CONTACT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            Contacter sur Life
+          </a>
         </div>
       </div>
     </section>

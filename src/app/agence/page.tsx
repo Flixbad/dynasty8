@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { agents } from "@/data/agents";
 import { getCategoryLabel } from "@/lib/format";
+import { AGENCY_CONTACT_URL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "L'agence",
@@ -108,9 +109,9 @@ export default function AgencePage() {
             <h2 className="display text-3xl text-ivory md:text-4xl">Prêt à trouver votre adresse ?</h2>
             <p className="mt-3 text-muted">Estimation ou visite — on répond en jeu.</p>
           </div>
-          <Link href="/contact" className="btn-primary">
-            Nous contacter
-          </Link>
+          <a href={AGENCY_CONTACT_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            Contacter sur Life
+          </a>
         </div>
       </section>
     </div>

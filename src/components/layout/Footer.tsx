@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { categories } from "@/data/categories";
+import { AGENCY_CONTACT_URL } from "@/lib/contact";
 
 export function Footer() {
   return (
@@ -14,9 +15,14 @@ export function Footer() {
               <span className="text-green">commence ici.</span>
             </p>
           </div>
-          <Link href="/contact" className="btn-primary self-start md:self-auto">
-            Parler à un conseiller
-          </Link>
+          <a
+            href={AGENCY_CONTACT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary self-start md:self-auto"
+          >
+            Contacter l&apos;agence
+          </a>
         </div>
 
         <div className="mt-16 grid gap-10 border-t border-[var(--line)] pt-12 md:grid-cols-4">
@@ -36,14 +42,19 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/favoris" className="hover:text-green-soft">
-                  Favoris
+                <Link href="/contact" className="hover:text-green-soft">
+                  Contact
                 </Link>
               </li>
               <li>
-                <Link href="/comparer" className="hover:text-green-soft">
-                  Comparer
-                </Link>
+                <a
+                  href={AGENCY_CONTACT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-soft"
+                >
+                  Profil Life
+                </a>
               </li>
             </ul>
           </div>
