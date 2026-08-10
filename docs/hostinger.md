@@ -29,11 +29,19 @@ Cela génère :
    - dossiers `biens/`, `zones/`, etc.
 6. Hard refresh navigateur : `Ctrl + Shift + R`
 
+### Si tu vois une erreur 403
+
+Sur un dossier (`/next/` ou `/next/static/chunks/`), le **403 Forbidden** est **normal** : Apache interdit le listing des dossiers.
+
+Teste plutôt un fichier précis, par ex. :
+`https://ton-domaine/next/static/chunks/` + un nom `.css` trouvé dans le code source de la page (doit répondre **200**).
+
 ### Si le design ne s’affiche toujours pas
 
-1. Ouvre `https://ton-domaine/next/static/chunks/` — tu dois voir des fichiers `.css` / `.js`
-2. Si 403/404 : le dossier `next/` n’est pas bien uploadé → ré-extrais le zip
-3. Vide le cache Hostinger (hPanel → Cache) si activé
+1. Affiche le code source de la page → cherche `.css` → ouvre cette URL : doit être **200**
+2. Si 404 : le dossier `next/` est incomplet → vide `public_html` et ré-extrais le zip entièrement
+3. Hard refresh : `Ctrl + Shift + R`
+4. Vide le cache Hostinger (hPanel → Cache) si activé
 
 ## 3. Vérifications
 
