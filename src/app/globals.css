@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0a0c0f;
+  --ink-soft: #12161c;
+  --ink-elevated: #1a2028;
+  --gold: #c9a227;
+  --gold-soft: #e0c56a;
+  --gold-dim: #8a7020;
+  --emerald: #1f6b4a;
+  --emerald-bright: #2d9a6a;
+  --ocean: #1a4a5c;
+  --cream: #f3eee3;
+  --cream-muted: #c8c0b0;
+  --line: rgba(201, 162, 39, 0.18);
+  --glow: rgba(201, 162, 39, 0.12);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-elevated: var(--ink-elevated);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-dim: var(--gold-dim);
+  --color-emerald: var(--emerald);
+  --color-emerald-bright: var(--emerald-bright);
+  --color-ocean: var(--ocean);
+  --color-cream: var(--cream);
+  --color-cream-muted: var(--cream-muted);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(201, 162, 39, 0.35);
+  color: var(--cream);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.atmosphere {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(31, 107, 74, 0.22), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(26, 74, 92, 0.2), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 0% 60%, rgba(201, 162, 39, 0.08), transparent 45%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold), var(--gold-dim));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  box-shadow: 0 8px 28px rgba(201, 162, 39, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 12px 36px rgba(201, 162, 39, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border: 1px solid var(--line);
+  color: var(--cream);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  background: var(--glow);
+  transform: translateY(-2px);
+}
+
+.reveal {
+  animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.reveal-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.reveal-delay-3 {
+  animation-delay: 0.36s;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.brand-shimmer {
+  background: linear-gradient(
+    105deg,
+    var(--gold-dim) 0%,
+    var(--gold-soft) 35%,
+    var(--cream) 50%,
+    var(--gold-soft) 65%,
+    var(--gold-dim) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+.hero-kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.property-media {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .property-media {
+  transform: scale(1.05);
+}
+
+.input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  color: var(--cream);
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.input-field:focus {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.05);
+}
+
+.input-field::placeholder {
+  color: var(--cream-muted);
+}
+
+.status-disponible {
+  color: var(--emerald-bright);
+}
+
+.status-reserve {
+  color: var(--gold-soft);
+}
+
+.status-vendu {
+  color: #c07070;
+}
