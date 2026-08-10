@@ -52,10 +52,10 @@ export default function AgencePage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              { label: "Biens", value: "20+" },
-              { label: "Quartiers", value: "15" },
-              { label: "Conseillers", value: "3" },
-              { label: "Dispo", value: "24/7" },
+              { label: "Locations réalisées", value: "2,648+" },
+              { label: "Intérieurs disponibles", value: "75" },
+              { label: "Clients satisfaits", value: "97%" },
+              { label: "Disponibilité", value: "24/7" },
             ].map((item) => (
               <div
                 key={item.label}

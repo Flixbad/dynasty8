@@ -27,7 +27,8 @@ export function AnimatedCounter({ value, suffix = "", className }: CounterProps)
   useEffect(() => {
     const unsub = spring.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = `${Math.round(latest)}${suffix}`;
+        const n = Math.round(latest).toLocaleString("en-US");
+        ref.current.textContent = `${n}${suffix}`;
       }
     });
     return () => unsub();
