@@ -86,8 +86,19 @@ export function Footer() {
       </div>
 
       <div className="border-t border-[var(--line)]">
-        <div className="container-x flex flex-col gap-2 py-5 text-[0.7rem] text-muted md:flex-row md:justify-between">
+        <div className="container-x flex flex-col gap-2 py-5 text-[0.7rem] text-muted md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Dynasty8 — Entreprise fictive GTA RP</p>
+          <p>
+            Créé et propulsé par{" "}
+            <a
+              href="https://kodyalabs.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ivory transition hover:text-green-soft"
+            >
+              Kodya Labs
+            </a>
+          </p>
           <p>Rockford · Vinewood · Del Perro · Blaine</p>
         </div>
       </div>
