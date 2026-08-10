@@ -21,7 +21,8 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
       } else {
         params.set(key, value);
       }
-      router.push(`/biens?${params.toString()}`);
+      const qs = params.toString();
+      router.push(qs ? `/biens/?${qs}` : "/biens/");
     },
     [router, searchParams],
   );
@@ -39,7 +40,8 @@ export function PropertyFilters({ districts }: PropertyFiltersProps) {
             const params = new URLSearchParams(searchParams.toString());
             if (value) params.set("q", value);
             else params.delete("q");
-            router.push(`/biens?${params.toString()}`);
+            const qs = params.toString();
+            router.push(qs ? `/biens/?${qs}` : "/biens/");
           }}
         />
       </label>

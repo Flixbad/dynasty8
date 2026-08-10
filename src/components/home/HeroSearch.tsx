@@ -17,7 +17,8 @@ export function HeroSearch() {
     if (category !== "all") params.set("category", category);
     if (zone !== "all") params.set("zone", zone);
     if (q.trim()) params.set("q", q.trim());
-    router.push(`/biens?${params.toString()}`);
+    const qs = params.toString();
+    router.push(qs ? `/biens/?${qs}` : "/biens/");
   }
 
   return (

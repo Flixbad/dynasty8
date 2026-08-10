@@ -21,10 +21,18 @@ npm run dev
 Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ```bash
-npm run build   # build production
-npm run start   # serveur production
-npm run lint    # ESLint
+npm run build          # génère le site statique dans out/
+npm run zip:hostinger  # build + zip pour Hostinger
+npm run lint
 ```
+
+## Déploiement Hostinger (mutualisé)
+
+Le site est en **export statique** — compatible hébergement mutualisé.
+
+1. `npm run build` (ou `npm run zip:hostinger`)
+2. Uploader le contenu de `out/` dans `public_html`
+3. Guide détaillé : [docs/hostinger.md](./docs/hostinger.md)
 
 ## Variables d'environnement
 
@@ -67,9 +75,8 @@ Copier `.env.example` vers `.env.local` si besoin :
 
 ## API
 
-- `GET /api/properties?category=&district=&status=&q=`
-- `GET /api/properties/[id]`
-- `POST /api/contact` — body JSON `{ name, email, phone?, message, propertyId? }`
+- `GET /api/properties` — retiré (export statique Hostinger)
+- Contact via [profil Life Oren RP](https://life.oren-rp.com/profile/cmqr56etp09xpo319qrtdxkxy) ou la centrale
 
 ## Arborescence
 

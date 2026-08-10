@@ -2,6 +2,13 @@
 
 All notable changes to Dynasty8 will be documented in this file.
 
+## [0.4.0] — 2026-08-10
+
+### Added
+
+- Export statique Next.js (`output: "export"`) pour Hostinger mutualisé
+- `.htaccess` Apache + guide `docs/hostinger.md` + script `zip:hostinger`
+
 ## [0.3.0] — 2026-08-10
 
 ### Changed
