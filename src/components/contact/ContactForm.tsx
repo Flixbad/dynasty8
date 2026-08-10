@@ -46,20 +46,20 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-7 border border-[var(--line)] bg-surface p-7 md:p-9">
+    <form onSubmit={onSubmit} className="space-y-7 rounded-[22px] border border-[var(--line)] bg-surface p-7 md:p-9">
       {propertyTitle && (
         <div className="border-b border-[var(--line)] pb-5">
-          <p className="text-[0.65rem] uppercase tracking-[0.2em] text-gold">Bien concerné</p>
-          <p className="mt-2 text-cream">{propertyTitle}</p>
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-green-soft">Bien concerné</p>
+          <p className="mt-2 text-ivory">{propertyTitle}</p>
         </div>
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
-        <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
+        <label className="flex flex-col gap-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-muted">
           Nom
           <input name="name" required className="input-field normal-case tracking-normal" />
         </label>
-        <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
+        <label className="flex flex-col gap-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-muted">
           Email
           <input
             name="email"
@@ -70,7 +70,7 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
         </label>
       </div>
 
-      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-muted">
         Téléphone
         <input
           name="phone"
@@ -79,7 +79,7 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
         />
       </label>
 
-      <label className="flex flex-col gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-cream-muted">
+      <label className="flex flex-col gap-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-muted">
         Message
         <textarea
           name="message"
@@ -95,7 +95,7 @@ export function ContactForm({ propertyId, propertyTitle }: ContactFormProps) {
       </button>
 
       {status === "success" && (
-        <p className="text-sm text-emerald-bright">
+        <p className="text-sm text-green-soft">
           Demande reçue. Un conseiller Dynasty8 vous recontactera sous peu.
         </p>
       )}

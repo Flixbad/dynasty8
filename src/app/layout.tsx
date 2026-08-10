@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
+import { Figtree, Syne } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AppProviders } from "@/components/providers/AppProviders";
@@ -10,13 +10,13 @@ import { Toast } from "@/components/ui/Toast";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
-const display = Instrument_Serif({
+const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["500", "600", "700", "800"],
 });
 
-const body = Manrope({
+const body = Figtree({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],

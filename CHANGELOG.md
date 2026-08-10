@@ -2,6 +2,13 @@
 
 All notable changes to Dynasty8 will be documented in this file.
 
+## [0.3.0] — 2026-08-10
+
+### Changed
+
+- Refonte UI complète « Vinewood Atelier » : Syne + Figtree, vert Dynasty, nav pill, bandes pierre
+- Accueil : hero Live Dynasty, marquee runway, manifesto 01-02-03, bento typologies
+
 ## [0.2.0] — 2026-08-10
 
 ### Added

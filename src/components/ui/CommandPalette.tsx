@@ -16,7 +16,7 @@ export function CommandPalette() {
   useEffect(() => {
     if (commandOpen) {
       setQuery("");
-      const t = window.setTimeout(() => inputRef.current?.focus(), 50);
+      const t = window.setTimeout(() => inputRef.current?.focus(), 40);
       return () => window.clearTimeout(t);
     }
   }, [commandOpen]);
@@ -37,7 +37,7 @@ export function CommandPalette() {
     <AnimatePresence>
       {commandOpen && (
         <motion.div
-          className="fixed inset-0 z-[90] flex items-start justify-center bg-ink/70 px-4 pt-[12vh] backdrop-blur-sm"
+          className="fixed inset-0 z-[90] flex items-start justify-center bg-void/70 px-4 pt-[14vh] backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -47,65 +47,55 @@ export function CommandPalette() {
             role="dialog"
             aria-label="Recherche Dynasty8"
             className="search-glass w-full max-w-xl overflow-hidden"
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            initial={{ opacity: 0, y: 18, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 border-b border-[var(--line)] px-5 py-4">
-              <span className="text-gold" aria-hidden>
-                ⌕
-              </span>
+              <span className="text-green-soft">⌕</span>
               <input
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Rechercher un bien, quartier, zone…"
-                className="w-full bg-transparent text-base text-cream outline-none placeholder:text-cream-muted"
+                placeholder="Bien, quartier, zone…"
+                className="w-full bg-transparent text-base text-ivory outline-none placeholder:text-muted"
               />
-              <kbd className="hidden rounded border border-[var(--line)] px-2 py-0.5 text-[0.65rem] text-cream-muted sm:inline">
+              <kbd className="rounded-full border border-[var(--line)] px-2 py-0.5 text-[0.65rem] text-muted">
                 ESC
               </kbd>
             </div>
 
             <ul className="max-h-[50vh] overflow-auto py-2">
               {results.length === 0 && (
-                <li className="px-5 py-8 text-center text-sm text-cream-muted">Aucun résultat</li>
+                <li className="px-5 py-8 text-center text-sm text-muted">Aucun résultat</li>
               )}
               {results.map((p) => (
                 <li key={p.id}>
                   <Link
                     href={`/biens/${p.slug}`}
                     onClick={() => setCommandOpen(false)}
-                    className="flex items-center gap-4 px-5 py-3 transition-colors hover:bg-white/5"
+                    className="flex items-center gap-4 px-5 py-3 transition hover:bg-white/5"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.image}
-                      alt=""
-                      className="h-12 w-16 shrink-0 object-cover"
-                    />
+                    <img src={p.image} alt="" className="h-12 w-16 rounded-xl object-cover" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm text-cream">{p.title}</p>
-                      <p className="truncate text-xs text-cream-muted">
+                      <p className="truncate text-sm font-medium text-ivory">{p.title}</p>
+                      <p className="truncate text-xs text-muted">
                         {p.district} · {getCategoryLabel(p.category)}
                       </p>
                     </div>
-                    <p className="shrink-0 text-sm text-gold-soft">{formatPrice(p.price)}</p>
+                    <p className="shrink-0 text-sm text-green-soft">{formatPrice(p.price)}</p>
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <div className="flex items-center justify-between border-t border-[var(--line)] px-5 py-3 text-[0.65rem] text-cream-muted">
-              <span>Raccourci Ctrl / ⌘ + K</span>
-              <Link
-                href="/biens"
-                onClick={() => setCommandOpen(false)}
-                className="text-gold-soft hover:text-cream"
-              >
-                Catalogue complet →
+            <div className="flex items-center justify-between border-t border-[var(--line)] px-5 py-3 text-[0.65rem] text-muted">
+              <span>Ctrl / ⌘ + K</span>
+              <Link href="/biens" onClick={() => setCommandOpen(false)} className="text-green-soft">
+                Catalogue →
               </Link>
             </div>
           </motion.div>

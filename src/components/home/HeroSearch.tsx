@@ -23,24 +23,24 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={onSubmit}
-      className="search-glass reveal reveal-delay-4 grid w-full max-w-4xl gap-4 p-4 sm:p-5 md:grid-cols-[1.2fr_1fr_1fr_auto]"
+      className="search-glass grid w-full gap-3 p-3 sm:p-4 md:grid-cols-[1.3fr_1fr_1fr_auto] md:gap-0"
     >
-      <label className="flex flex-col gap-1.5 px-2">
-        <span className="text-[0.65rem] uppercase tracking-[0.2em] text-cream-muted">Lieu</span>
+      <label className="flex flex-col gap-1.5 px-3 py-2">
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted">Lieu</span>
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Rockford, Del Perro…"
-          className="bg-transparent text-[0.95rem] text-cream outline-none placeholder:text-cream-muted/70"
+          className="bg-transparent text-[0.95rem] text-ivory outline-none placeholder:text-muted/70"
         />
       </label>
 
-      <label className="flex flex-col gap-1.5 border-t border-[var(--line)] px-2 pt-3 md:border-t-0 md:border-l md:pt-0 md:pl-4">
-        <span className="text-[0.65rem] uppercase tracking-[0.2em] text-cream-muted">Type</span>
+      <label className="flex flex-col gap-1.5 border-t border-[var(--line)] px-3 py-2 md:border-l md:border-t-0">
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted">Type</span>
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="bg-transparent text-[0.95rem] text-cream outline-none"
+          className="bg-transparent text-[0.95rem] text-ivory outline-none"
         >
           <option value="all">Tous les biens</option>
           {categories.map((c) => (
@@ -51,12 +51,12 @@ export function HeroSearch() {
         </select>
       </label>
 
-      <label className="flex flex-col gap-1.5 border-t border-[var(--line)] px-2 pt-3 md:border-t-0 md:border-l md:pt-0 md:pl-4">
-        <span className="text-[0.65rem] uppercase tracking-[0.2em] text-cream-muted">Zone</span>
+      <label className="flex flex-col gap-1.5 border-t border-[var(--line)] px-3 py-2 md:border-l md:border-t-0">
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted">Zone</span>
         <select
           value={zone}
           onChange={(e) => setZone(e.target.value)}
-          className="bg-transparent text-[0.95rem] text-cream outline-none"
+          className="bg-transparent text-[0.95rem] text-ivory outline-none"
         >
           <option value="all">Toute l&apos;île</option>
           {zones.map((z) => (
@@ -67,9 +67,11 @@ export function HeroSearch() {
         </select>
       </label>
 
-      <button type="submit" className="btn-primary mt-1 w-full md:mt-0 md:min-w-[8.5rem]">
-        Rechercher
-      </button>
+      <div className="flex items-center p-1 md:pl-3">
+        <button type="submit" className="btn-primary w-full md:min-w-[8.5rem]">
+          Rechercher
+        </button>
+      </div>
     </form>
   );
 }

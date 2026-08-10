@@ -41,9 +41,9 @@ export function EstimateCalculator() {
   const high = Math.round(estimate * 1.08);
 
   return (
-    <div className="border border-[var(--line)] bg-surface p-7 md:p-9">
+    <div className="border border-[var(--line)] bg-surface p-7 md:p-9 rounded-[22px]">
       <p className="eyebrow">Estimateur RP</p>
-      <h3 className="display mt-3 text-3xl text-cream">Valeur estimée</h3>
+      <h3 className="display mt-3 text-3xl text-ivory">Valeur estimée</h3>
       <p className="mt-2 text-sm font-light text-cream-muted">
         Outil indicatif Dynasty8 pour budgéter votre prochain achat en jeu.
       </p>

@@ -12,25 +12,23 @@ interface TrustStripProps {
 
 export function TrustStrip({ total, available, zones, districts }: TrustStripProps) {
   const stats = [
-    { label: "Biens au catalogue", value: total },
+    { label: "Biens", value: total },
     { label: "Disponibles", value: available },
-    { label: "Zones couvertes", value: zones },
-    { label: "Quartiers", value: districts },
+    { label: "Zones", value: zones },
+    { label: "Quartiers", value: districts, suffix: "+" },
   ];
 
   return (
-    <section className="border-y border-[var(--line)] bg-ink-soft/30">
-      <div className="container-x grid grid-cols-2 gap-8 py-10 md:grid-cols-4 md:py-14">
+    <section className="border-y border-[var(--line)]">
+      <div className="container-x grid grid-cols-2 gap-8 py-12 md:grid-cols-4 md:py-16">
         {stats.map((stat, i) => (
-          <Reveal key={stat.label} delay={i * 0.08}>
-            <div className="text-center md:text-left">
-              <p className="display text-3xl text-cream md:text-4xl">
-                <AnimatedCounter value={stat.value} suffix={stat.label === "Quartiers" ? "+" : ""} />
-              </p>
-              <p className="mt-2 text-[0.7rem] uppercase tracking-[0.18em] text-cream-muted">
-                {stat.label}
-              </p>
-            </div>
+          <Reveal key={stat.label} delay={i * 0.06}>
+            <p className="display text-5xl text-ivory md:text-6xl">
+              <AnimatedCounter value={stat.value} suffix={stat.suffix ?? ""} />
+            </p>
+            <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-muted">
+              {stat.label}
+            </p>
           </Reveal>
         ))}
       </div>

@@ -46,7 +46,7 @@ export function CustomCursor() {
       transition={{ type: "spring", stiffness: 400, damping: 28, mass: 0.4 }}
     >
       <div
-        className={`h-full w-full rounded-full border ${hover ? "border-cream bg-transparent" : "bg-gold"}`}
+        className={`h-full w-full rounded-full border ${hover ? "border-ivory bg-transparent" : "bg-green"}`}
       />
     </motion.div>
   );

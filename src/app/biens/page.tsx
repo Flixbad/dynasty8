@@ -36,18 +36,20 @@ export default async function BiensPage({ searchParams }: BiensPageProps) {
   });
 
   return (
-    <div className="pb-24 pt-32 md:pt-36">
+    <div className="pb-24 pt-28 md:pt-32">
       <div className="container-x">
-        <header className="mb-10 max-w-2xl md:mb-14">
+        <header className="mb-10 max-w-3xl md:mb-14">
           <p className="eyebrow">Catalogue</p>
-          <h1 className="display mt-4 text-5xl text-cream md:text-6xl">Propriétés</h1>
-          <p className="mt-4 font-light text-cream-muted">
-            {results.length} bien{results.length > 1 ? "s" : ""} — filtrez par zone, type ou
-            quartier. Astuce : <span className="text-gold-soft">⌘K</span> pour rechercher.
+          <h1 className="display mt-4 text-5xl text-ivory md:text-7xl">
+            Propriétés
+          </h1>
+          <p className="mt-4 font-light text-muted">
+            {results.length} résultat{results.length > 1 ? "s" : ""}. Astuce :{" "}
+            <span className="text-green-soft">⌘K</span> pour chercher plus vite.
           </p>
         </header>
 
-        <Suspense fallback={<div className="mb-8 h-24 animate-pulse bg-ink-elevated" />}>
+        <Suspense fallback={<div className="mb-8 h-24 animate-pulse rounded-[18px] bg-panel" />}>
           <PropertyFilters districts={getDistricts()} />
         </Suspense>
 

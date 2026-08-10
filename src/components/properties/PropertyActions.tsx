@@ -18,16 +18,16 @@ export function PropertyActions({ id, compact = false }: PropertyActionsProps) {
   const cmp = hasCompare(id);
 
   return (
-    <div className={`flex gap-2 ${compact ? "" : ""}`}>
+    <div className="flex gap-1.5">
       <button
         type="button"
         aria-label={fav ? "Retirer des favoris" : "Ajouter aux favoris"}
         aria-pressed={fav}
-        className={`flex items-center justify-center transition ${
+        className={`flex items-center justify-center rounded-full transition ${
           compact
-            ? "h-9 w-9 bg-ink/55 text-sm backdrop-blur-md hover:bg-ink/75"
-            : "h-10 gap-2 border border-[var(--line)] px-3 text-xs uppercase tracking-[0.14em] hover:border-gold/40"
-        } ${fav ? "text-gold-soft" : "text-cream"}`}
+            ? "h-9 w-9 bg-void/55 text-sm backdrop-blur-md hover:bg-void/75"
+            : "h-10 gap-2 border border-[var(--line)] px-4 text-xs font-bold uppercase tracking-[0.12em] hover:border-green/40"
+        } ${fav ? "text-green-soft" : "text-ivory"}`}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -42,11 +42,11 @@ export function PropertyActions({ id, compact = false }: PropertyActionsProps) {
         type="button"
         aria-label={cmp ? "Retirer de la comparaison" : "Comparer"}
         aria-pressed={cmp}
-        className={`flex items-center justify-center transition ${
+        className={`flex items-center justify-center rounded-full transition ${
           compact
-            ? "h-9 w-9 bg-ink/55 text-sm backdrop-blur-md hover:bg-ink/75"
-            : "h-10 gap-2 border border-[var(--line)] px-3 text-xs uppercase tracking-[0.14em] hover:border-gold/40"
-        } ${cmp ? "text-gold-soft" : "text-cream"}`}
+            ? "h-9 w-9 bg-void/55 text-sm backdrop-blur-md hover:bg-void/75"
+            : "h-10 gap-2 border border-[var(--line)] px-4 text-xs font-bold uppercase tracking-[0.12em] hover:border-green/40"
+        } ${cmp ? "text-green-soft" : "text-ivory"}`}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
