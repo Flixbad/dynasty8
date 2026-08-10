@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PropertyFilters } from "@/components/properties/PropertyFilters";
 import { PropertyGrid } from "@/components/properties/PropertyGrid";
+import { RecentlyViewed } from "@/components/properties/RecentlyViewed";
 import { filterProperties, getDistricts } from "@/data/properties";
 import type { PropertyCategory, PropertyStatus } from "@/types";
 
@@ -35,21 +36,28 @@ export default async function BiensPage({ searchParams }: BiensPageProps) {
   });
 
   return (
-    <div className="container-x pb-24 pt-32 md:pt-36">
-      <header className="mb-10 max-w-2xl md:mb-14">
-        <p className="eyebrow">Catalogue</p>
-        <h1 className="display mt-4 text-5xl text-cream md:text-6xl">Propriétés</h1>
-        <p className="mt-4 font-light text-cream-muted">
-          {results.length} bien{results.length > 1 ? "s" : ""} — filtrez par zone, type ou quartier.
-        </p>
-      </header>
+    <div className="pb-24 pt-32 md:pt-36">
+      <div className="container-x">
+        <header className="mb-10 max-w-2xl md:mb-14">
+          <p className="eyebrow">Catalogue</p>
+          <h1 className="display mt-4 text-5xl text-cream md:text-6xl">Propriétés</h1>
+          <p className="mt-4 font-light text-cream-muted">
+            {results.length} bien{results.length > 1 ? "s" : ""} — filtrez par zone, type ou
+            quartier. Astuce : <span className="text-gold-soft">⌘K</span> pour rechercher.
+          </p>
+        </header>
 
-      <Suspense fallback={<div className="mb-8 h-24 animate-pulse bg-ink-elevated" />}>
-        <PropertyFilters districts={getDistricts()} />
-      </Suspense>
+        <Suspense fallback={<div className="mb-8 h-24 animate-pulse bg-ink-elevated" />}>
+          <PropertyFilters districts={getDistricts()} />
+        </Suspense>
 
-      <div className="mt-10 md:mt-12">
-        <PropertyGrid properties={results} />
+        <div className="mt-10 md:mt-12">
+          <PropertyGrid properties={results} />
+        </div>
+      </div>
+
+      <div className="mt-20">
+        <RecentlyViewed />
       </div>
     </div>
   );

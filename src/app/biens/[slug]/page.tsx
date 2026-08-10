@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { PropertyGallery } from "@/components/properties/PropertyGallery";
+import { PropertyDetailClient } from "@/components/properties/PropertyDetailClient";
 import { getPropertyBySlug, properties } from "@/data/properties";
 import { getZone } from "@/data/zones";
 import {
@@ -37,7 +39,7 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
 
   return (
     <div className="pb-24">
-      <div className="relative h-[62vh] min-h-[420px] overflow-hidden">
+      <div className="relative h-[68vh] min-h-[440px] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={property.image} alt={property.title} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/30" />
@@ -76,7 +78,8 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
       <div className="container-x grid gap-14 py-14 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
         <div>
           <p className="display text-4xl text-cream md:text-5xl">{formatPrice(property.price)}</p>
-          <div className="gold-rule mt-6" />
+          <PropertyDetailClient propertyId={property.id} />
+          <div className="gold-rule mt-8" />
           <p className="mt-8 text-lg font-light leading-relaxed text-cream-muted">
             {property.longDescription}
           </p>
@@ -111,22 +114,7 @@ export default async function PropertyDetailPage({ params }: PropertyPageProps) 
             </ul>
           </div>
 
-          {property.gallery.length > 1 && (
-            <div className="mt-14">
-              <h2 className="display text-3xl text-cream">Galerie</h2>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {property.gallery.map((src) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={src}
-                    src={src}
-                    alt={property.title}
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+          <PropertyGallery images={property.gallery} title={property.title} />
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">

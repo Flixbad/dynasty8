@@ -35,6 +35,17 @@ Copier `.env.example` vers `.env.local` si besoin :
 | `NEXT_PUBLIC_SITE_URL` | URL publique du site |
 | `DISCORD_WEBHOOK_URL` | (optionnel) webhook pour les contacts |
 
+## Expérience
+
+- Splash intro Dynasty8
+- Scroll fluide (Lenis) + animations (Framer Motion)
+- Recherche globale **Ctrl / ⌘ + K**
+- Favoris & comparateur (localStorage)
+- Dock flottant + toasts
+- Hero carousel + estimateur RP
+- Galerie lightbox plein écran
+- Curseur custom (desktop)
+
 ## Pages
 
 | Route | Description |
@@ -42,9 +53,14 @@ Copier `.env.example` vers `.env.local` si besoin :
 | `/` | Accueil — hero, sélection, catégories |
 | `/biens` | Catalogue avec filtres |
 | `/biens/[slug]` | Fiche bien + formulaire |
+| `/favoris` | Biens sauvegardés |
+| `/comparer` | Comparaison jusqu'à 3 biens |
 | `/zones` | Carte San Andreas & découverte Zones 1–4 |
 | `/zones/[slug]` | Biens d'une zone (+ détail par catégorie) |
 | `/categories` | Liste des typologies |
+| `/categories/[slug]` | Biens par typologie |
+| `/agence` | Présentation & conseillers |
+| `/contact` | Formulaire + estimateur |
 | `/categories/[slug]` | Biens par catégorie |
 | `/agence` | Présentation & conseillers |
 | `/contact` | Formulaire de contact |

@@ -329,6 +329,20 @@ select.input-field option {
   }
 }
 
+html.cursor-dynasty,
+html.cursor-dynasty body,
+html.cursor-dynasty a,
+html.cursor-dynasty button,
+html.cursor-dynasty input,
+html.cursor-dynasty select,
+html.cursor-dynasty textarea {
+  cursor: none !important;
+}
+
+.dock-safe {
+  padding-bottom: 5.5rem;
+}
+
 .listing-meta {
   display: flex;
   flex-wrap: wrap;

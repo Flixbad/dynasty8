@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useUI } from "@/lib/ui";
+import { useFavorites } from "@/lib/favorites";
 
 const links = [
   { href: "/biens", label: "Propriétés" },
@@ -15,6 +17,8 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { setCommandOpen } = useUI();
+  const { ids: favIds } = useFavorites();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -55,15 +59,34 @@ export function Header() {
                 }`}
               >
                 {link.label}
-                {active && (
-                  <span className="absolute -bottom-1 left-0 h-px w-full bg-gold" />
-                )}
+                {active && <span className="absolute -bottom-1 left-0 h-px w-full bg-gold" />}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
+          <button
+            type="button"
+            onClick={() => setCommandOpen(true)}
+            className="flex items-center gap-2 text-[0.8rem] font-medium text-cream-muted transition-colors hover:text-cream"
+          >
+            Recherche
+            <kbd className="rounded border border-[var(--line)] px-1.5 py-0.5 text-[0.6rem]">
+              ⌘K
+            </kbd>
+          </button>
+          <Link
+            href="/favoris"
+            className="relative text-[0.8rem] font-medium text-cream-muted transition-colors hover:text-cream"
+          >
+            Favoris
+            {favIds.length > 0 && (
+              <span className="ml-1 inline-flex h-4 min-w-4 items-center justify-center bg-gold px-1 text-[0.6rem] font-semibold text-ink">
+                {favIds.length}
+              </span>
+            )}
+          </Link>
           <Link
             href="/contact"
             className="text-[0.8rem] font-medium text-cream-muted transition-colors hover:text-cream"
@@ -97,20 +120,32 @@ export function Header() {
 
       <div
         className={`overflow-hidden border-t border-[var(--line)] bg-ink/95 backdrop-blur-xl transition-all duration-400 lg:hidden ${
-          open ? "max-h-[28rem] opacity-100" : "max-h-0 border-transparent opacity-0"
+          open ? "max-h-[32rem] opacity-100" : "max-h-0 border-transparent opacity-0"
         }`}
       >
         <nav className="container-x flex flex-col gap-1 py-6">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="display py-3 text-3xl text-cream"
-            >
+            <Link key={link.href} href={link.href} className="display py-3 text-3xl text-cream">
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className="display py-3 text-3xl text-gold-soft">
+          <Link href="/favoris" className="display py-3 text-3xl text-cream">
+            Favoris
+          </Link>
+          <Link href="/comparer" className="display py-3 text-3xl text-cream">
+            Comparer
+          </Link>
+          <button
+            type="button"
+            className="display py-3 text-left text-3xl text-gold-soft"
+            onClick={() => {
+              setOpen(false);
+              setCommandOpen(true);
+            }}
+          >
+            Recherche ⌘K
+          </button>
+          <Link href="/contact" className="display py-3 text-3xl text-cream">
             Contact
           </Link>
           <Link href="/biens" className="btn-primary mt-4 w-full">

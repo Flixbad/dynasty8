@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { Property } from "@/types";
 import { getZone } from "@/data/zones";
 import { formatArea, formatPrice, getCategoryLabel, getStatusLabel } from "@/lib/format";
+import { PropertyActions } from "./PropertyActions";
 
 interface PropertyCardProps {
   property: Property;
@@ -18,7 +22,15 @@ export function PropertyCard({
   const featured = variant === "featured";
 
   return (
-    <article className={`group ${featured ? "h-full" : ""}`}>
+    <motion.article
+      className={`group relative ${featured ? "h-full" : ""}`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="absolute right-4 top-4 z-20 md:right-5 md:top-5">
+        <PropertyActions id={property.id} compact />
+      </div>
+
       <Link
         href={`/biens/${property.slug}`}
         className={`relative block overflow-hidden bg-ink-elevated ${
@@ -48,9 +60,7 @@ export function PropertyCard({
           </span>
         </div>
 
-        <div
-          className={`absolute inset-x-0 bottom-0 p-5 md:p-6 ${featured ? "md:p-8" : ""}`}
-        >
+        <div className={`absolute inset-x-0 bottom-0 p-5 md:p-6 ${featured ? "md:p-8" : ""}`}>
           <p
             className={`display text-cream ${featured ? "text-4xl md:text-5xl" : "text-2xl md:text-[1.75rem]"}`}
           >
@@ -76,6 +86,6 @@ export function PropertyCard({
           )}
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }

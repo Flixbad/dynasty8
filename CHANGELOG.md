@@ -2,6 +2,15 @@
 
 All notable changes to Dynasty8 will be documented in this file.
 
+## [0.2.0] — 2026-08-10
+
+### Added
+
+- Framer Motion + Lenis (animations & smooth scroll)
+- Recherche Cmd+K, favoris, comparateur, dock flottant
+- Splash intro, curseur custom, lightbox galerie
+- Estimateur RP, hero carousel, compteurs animés
+
 ## [0.1.0] — 2026-08-10
 
 ### Added
