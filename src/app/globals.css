@@ -278,9 +278,10 @@ select.input-field {
   padding-right: 1.25rem;
 }
 
-select.input-field option {
-  background: #12151a;
-  color: var(--ivory);
+/* Options natives : fond clair + texte noir (lisibilité Windows / macOS) */
+select option {
+  background: #ffffff;
+  color: #12141a;
 }
 
 .filter-bar {
